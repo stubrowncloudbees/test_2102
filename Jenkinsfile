@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'openjdk'
+    }
+    
+  }
   stages {
     stage('StageOne') {
       parallel {
