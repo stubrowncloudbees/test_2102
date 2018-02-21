@@ -18,6 +18,7 @@ pipeline {
           steps {
             sh 'mvn -version'
             input(message: 'Do you want to continue ', ok: 'Go ')
+            checkpoint 'BeforeGo'
           }
         }
       }
