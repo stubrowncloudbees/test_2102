@@ -1,29 +1,15 @@
 pipeline {
   agent {
-    node {
+    docker {
+      image 'maven:3-alpine'
       label 'docker'
     }
     
   }
   stages {
-    stage('StageOne') {
-      parallel {
-        stage('StageOne') {
-          agent {
-            docker {
-              image 'openjdk'
-            }
-            
-          }
-          steps {
-            echo 'testone'
-          }
-        }
-        stage('StageTwo') {
-          steps {
-            echo 'stage two'
-          }
-        }
+    stage('Example Build') {
+      steps {
+        sh 'mvn -B clean verify'
       }
     }
   }
