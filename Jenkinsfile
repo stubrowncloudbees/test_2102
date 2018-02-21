@@ -1,15 +1,16 @@
 pipeline {
-  agent {
-    docker {
-      image 'maven:3-alpine'
-      label 'docker'
-    }
-    
-  }
+  agent none
   stages {
     stage('Example Build') {
       parallel {
         stage('Example Build') {
+          agent {
+            docker {
+              image 'maven:3-alpine'
+              label 'docker'
+            }
+            
+          }
           steps {
             sh 'mvn -version'
           }
