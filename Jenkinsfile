@@ -4,6 +4,12 @@ pipeline {
     stage('StageOne') {
       parallel {
         stage('StageOne') {
+          agent {
+            docker {
+              image 'openjdk'
+            }
+            
+          }
           steps {
             echo 'testone'
           }
