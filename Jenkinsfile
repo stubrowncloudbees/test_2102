@@ -8,8 +8,24 @@ pipeline {
   }
   stages {
     stage('Example Build') {
-      steps {
-        sh 'mvn -version'
+      parallel {
+        stage('Example Build') {
+          steps {
+            sh 'mvn -version'
+          }
+        }
+        stage('StepTwo') {
+          agent {
+            docker {
+              image 'maven:3-alpine'
+              label 'docker'
+            }
+            
+          }
+          steps {
+            sh 'mvn -version'
+          }
+        }
       }
     }
   }
